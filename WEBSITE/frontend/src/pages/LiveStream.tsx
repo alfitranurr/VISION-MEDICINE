@@ -391,9 +391,17 @@ export default function LiveStream() {
             Live Stream Detection
           </Heading>
           {/* ➕ Tampilkan status SSE */}
-          <Text fontSize="sm" color={isSSEConnected ? "green.400" : "red.400"}>
-            SSE Status: {isSSEConnected ? "Connected" : "Disconnected"}
-          </Text>
+          <Flex align="center" gap={2} mt={2}>
+            <Box
+              w={2}
+              h={2}
+              borderRadius="full"
+              bg={isSSEConnected ? "green.400" : "red.400"}
+            />
+            <Text fontSize="sm" color="white">
+              SSE Status: {isSSEConnected ? "Connected" : "Disconnected"}
+            </Text>
+          </Flex>
         </Flex>
 
         {!isConnected ? (
