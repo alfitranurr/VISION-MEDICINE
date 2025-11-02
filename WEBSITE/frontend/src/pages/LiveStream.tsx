@@ -54,6 +54,7 @@ interface Detection {
 export default function LiveStream() {
   const [isFallback, setIsFallback] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const [isSSEConnected, setIsSSEConnected] = useState(false);
   const [detections, setDetections] = useState<Detection[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [clearLoading, setClearLoading] = useState(false); // ➕ NEW: Khusus untuk clear (smooth, no global loading)
@@ -138,6 +139,7 @@ export default function LiveStream() {
       eventSourceRef.current.close();
       eventSourceRef.current = null;
       console.log("🛑 SSE connection closed");
+      setIsSSEConnected(false);
     }
     // ➕ NEW: Clear interval saat disconnect
     if (fetchIntervalRef.current) {
@@ -283,15 +285,20 @@ export default function LiveStream() {
     // ➕ FIX: Close existing jika ada
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
+      setIsSSEConnected(false);
     }
 
     console.log("🚀 Connecting to SSE:", sseUrl);
     const source = new EventSource(sseUrl);
     eventSourceRef.current = source;
 
-    source.onopen = () => console.log("✅ Connected to SSE stream");
+    source.onopen = () => {
+      console.log("✅ Connected to SSE stream");
+      setIsSSEConnected(true);
+    };
     source.onerror = (err) => {
       console.error("❌ SSE error:", err);
+      setIsSSEConnected(false);
       setTimeout(() => {
         if (!eventSourceRef.current) connectSSE(); // ➕ FIX: Hanya retry jika belum connect
       }, 3000);
@@ -349,6 +356,7 @@ export default function LiveStream() {
       if (eventSourceRef.current) {
         eventSourceRef.current.close();
         eventSourceRef.current = null;
+        setIsSSEConnected(false);
       }
     };
   }, []); // Empty dependency: Jalankan sekali saat mount
@@ -383,8 +391,8 @@ export default function LiveStream() {
             Live Stream Detection
           </Heading>
           {/* ➕ Tampilkan status SSE */}
-          <Text fontSize="sm" color="rgba(255,255,255,0.7)">
-            SSE Status: {eventSourceRef.current ? "Connected" : "Disconnected"}
+          <Text fontSize="sm" color={isSSEConnected ? "green.400" : "red.400"}>
+            SSE Status: {isSSEConnected ? "Connected" : "Disconnected"}
           </Text>
         </Flex>
 
