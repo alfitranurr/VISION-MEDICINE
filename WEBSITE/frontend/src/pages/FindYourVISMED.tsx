@@ -29,8 +29,8 @@ const FindYourVISMED = () => {
 
   // Lokasi default (jika belum ada lokasi dari ESP32)
   const defaultLocation = {
-    lat: -7.919596235477069,
-    lng: 112.59541158001561,
+    lat: -7.920854150872343,
+    lng: 112.59939608370536,
   };
 
   // =========================
