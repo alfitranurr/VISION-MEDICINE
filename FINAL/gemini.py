@@ -35,8 +35,8 @@ API_TOKEN = os.getenv("API_TOKEN", "vismed-raspberry123")
 YOLO_MODEL = os.getenv("YOLO_MODEL", "best_tuned.pt")
 OBAT_CSV = os.getenv("OBAT_CSV", "Data Obat - 70 Obat.csv")
 
-WEBHOOK_NORMAL = "https://f5af58e56262.ngrok-free.app/webhook/chat-input"
-WEBHOOK_REMINDER = "https://f5af58e56262.ngrok-free.app/webhook/vismed-reminder"
+WEBHOOK_NORMAL = "https://ramdd-n8n-2.azurewebsites.net/webhook/chat-input"
+WEBHOOK_REMINDER = "https://ramdd-n8n-2.azurewebsites.net/webhook/vismed-reminder"
 
 # ===============================
 # YOLO MODEL
