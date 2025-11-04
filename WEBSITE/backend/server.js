@@ -119,7 +119,7 @@ const autoPingServer = async () => {
   }
 };
 
-// ➕ NEW: Setup cron job - jalankan setiap 10 menit (0 */5 * * * *)
+// ➕ NEW: Setup cron job - jalankan setiap 5 menit (0 */5 * * * *)
 cron.schedule("0 */5 * * * *", autoPingServer);
 
 // -------------------------------
