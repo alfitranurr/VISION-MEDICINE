@@ -119,8 +119,8 @@ const autoPingServer = async () => {
   }
 };
 
-// ➕ NEW: Setup cron job - jalankan setiap 30 menit (0 */30 * * * *)
-cron.schedule("0 */15 * * * *", autoPingServer);
+// ➕ NEW: Setup cron job - jalankan setiap 10 menit (0 */10 * * * *)
+cron.schedule("0 */10 * * * *", autoPingServer);
 
 // -------------------------------
 // 🚀 Start server
@@ -133,5 +133,5 @@ app.listen(PORT, () => {
   console.log(chalk.magenta(`🧠 n8n SSE endpoint aktif di: /api/n8n/stream`));
   console.log(chalk.green(`📩 Terima data dari n8n via: POST /api/n8n/send`));
   // ➕ NEW: Log konfirmasi cron
-  console.log(chalk.yellow(`⏰ Auto-ping aktif: Setiap 15 menit ke /`));
+  console.log(chalk.yellow(`⏰ Auto-ping aktif: Setiap 10 menit ke /`));
 });
