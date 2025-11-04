@@ -9,6 +9,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan"; // untuk log HTTP
 import chalk from "chalk"; // warna di terminal
+// ➕ NEW: Import untuk cron job
+import cron from "node-cron";
+import axios from "axios"; // Gunakan axios untuk request internal (sudah ada dari chat.js)
 
 // -------------------------------
 // 🧩 Import semua routes
@@ -101,6 +104,24 @@ app.get("/", (req, res) => {
   });
 });
 
+// ➕ NEW: Fungsi untuk auto-ping server (request ke diri sendiri)
+const autoPingServer = async () => {
+  try {
+    const serverUrl = `http://localhost:${process.env.PORT || 5000}`; // Ganti dengan URL production jika deploy
+    await axios.get(serverUrl);
+    console.log(
+      chalk.blue(
+        `🔔 Auto-ping berhasil: Server tetap hidup! (${new Date().toISOString()})`
+      )
+    );
+  } catch (error) {
+    console.error(chalk.red(`❌ Auto-ping gagal: ${error.message}`));
+  }
+};
+
+// ➕ NEW: Setup cron job - jalankan setiap 30 menit (0 */30 * * * *)
+cron.schedule("0 */15 * * * *", autoPingServer);
+
 // -------------------------------
 // 🚀 Start server
 // -------------------------------
@@ -111,4 +132,6 @@ app.listen(PORT, () => {
   );
   console.log(chalk.magenta(`🧠 n8n SSE endpoint aktif di: /api/n8n/stream`));
   console.log(chalk.green(`📩 Terima data dari n8n via: POST /api/n8n/send`));
+  // ➕ NEW: Log konfirmasi cron
+  console.log(chalk.yellow(`⏰ Auto-ping aktif: Setiap 15 menit ke /`));
 });
