@@ -1,6 +1,6 @@
 // ========================================
 // WEBSITE/backend/server.js
-// Versi stable - updated 2025-10-26
+// Versi stable - updated 2025-11-04
 // ========================================
 
 import "dotenv/config";
@@ -9,9 +9,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan"; // untuk log HTTP
 import chalk from "chalk"; // warna di terminal
-// ➕ NEW: Import untuk cron job
-import cron from "node-cron";
-import axios from "axios"; // Gunakan axios untuk request internal (sudah ada dari chat.js)
+// ➕ NEW: Import untuk auto-ping (axios untuk request internal)
+import axios from "axios";
 
 // -------------------------------
 // 🧩 Import semua routes
@@ -107,8 +106,9 @@ app.get("/", (req, res) => {
 // ➕ NEW: Fungsi untuk auto-ping server (request ke diri sendiri)
 const autoPingServer = async () => {
   try {
-    const serverUrl = `http://localhost:${process.env.PORT || 5000}`; // Ganti dengan URL production jika deploy
-    await axios.get(serverUrl);
+    const PORT = process.env.PORT || 5000;
+    const serverUrl = `http://localhost:${PORT}`; // Ganti dengan URL production jika deploy (e.g., process.env.SERVER_URL)
+    await axios.get(serverUrl, { timeout: 5000 }); // Tambah timeout biar nggak hang
     console.log(
       chalk.blue(
         `🔔 Auto-ping berhasil: Server tetap hidup! (${new Date().toISOString()})`
@@ -119,8 +119,8 @@ const autoPingServer = async () => {
   }
 };
 
-// ➕ NEW: Setup cron job - jalankan setiap 5 menit (0 */5 * * * *)
-cron.schedule("0 */5 * * * *", autoPingServer);
+// ➕ NEW: Setup setInterval - jalankan setiap 10 menit (600000 ms)
+setInterval(autoPingServer, 10 * 60 * 1000);
 
 // -------------------------------
 // 🚀 Start server
@@ -132,6 +132,8 @@ app.listen(PORT, () => {
   );
   console.log(chalk.magenta(`🧠 n8n SSE endpoint aktif di: /api/n8n/stream`));
   console.log(chalk.green(`📩 Terima data dari n8n via: POST /api/n8n/send`));
-  // ➕ NEW: Log konfirmasi cron
-  console.log(chalk.yellow(`⏰ Auto-ping aktif: Setiap 5 menit ke /`));
+  // ➕ NEW: Log konfirmasi auto-ping
+  console.log(
+    chalk.yellow(`⏰ Auto-ping aktif: Setiap 10 menit via setInterval`)
+  );
 });
