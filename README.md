@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo/vismed-banner.png" alt="Vision Medicine Banner" width="100%"/>
+![Vision Medicine Banner](./Vision%20Medicine%20Banner.png)
 
 # 👓 VISION MEDICINE
 ### Smart Glasses Berbasis *Machine Learning* untuk Deteksi Obat Bagi Penyandang Tunanetra dengan *Generative AI* dan *Voice Assistant*
@@ -95,7 +95,7 @@ Tim Vision Medicine berhasil meraih **3 sertifikat penghargaan** tingkat nasiona
 
 **🥇 Pendanaan Nasional PKM-KC 2025**
 <br/>
-<img src="assets/certificates/certificate-1-national-funding-pkm-kc-2025.png" alt="Sertifikat Pendanaan Nasional PKM-KC 2025" width="100%"/>
+![Sertifikat Pendanaan Nasional PKM-KC 2025](./certificate-1-national-funding-pkm-kc-2025.png)
 <br/>
 <sub>Nomor: 5108/B2/DT.01.00/2025 — Direktorat Jenderal Pendidikan Tinggi, Riset, dan Teknologi (Belmawa)</sub>
 
@@ -104,7 +104,7 @@ Tim Vision Medicine berhasil meraih **3 sertifikat penghargaan** tingkat nasiona
 
 **🥇 Juara 1 PKP2 PTMA 2025**
 <br/>
-<img src="assets/certificates/certificate-2-1st-winner-pkp2-ptma-2025.png" alt="Sertifikat Juara 1 PKP2 PTMA 2025" width="100%"/>
+![Sertifikat Juara 1 PKP2 PTMA 2025](./certificate-2-1st-winner-pkp2-ptma-2025.png)
 <br/>
 <sub>Juara 1 Skema PKM-KC (Room 1) — Universitas Muhammadiyah Makassar, 10–11 Oktober 2025</sub>
 
@@ -113,7 +113,7 @@ Tim Vision Medicine berhasil meraih **3 sertifikat penghargaan** tingkat nasiona
 
 **🥈 Juara 2 PIMTANAS ke-5 2025**
 <br/>
-<img src="assets/certificates/certificate-3-2nd-place-pimtanas-2025.png" alt="Sertifikat Juara 2 PIMTANAS 2025" width="100%"/>
+![Sertifikat Juara 2 PIMTANAS 2025](./certificate-3-2nd-place-pimtanas-2025.png)
 <br/>
 <sub>Juara 2 Kategori Presentasi KC/PI/VGK/GFT — Universitas Muhammadiyah Banjarmasin, 11–13 Desember 2025</sub>
 
@@ -127,7 +127,7 @@ Tim Vision Medicine berhasil meraih **3 sertifikat penghargaan** tingkat nasiona
 | 2   | 🥇 Juara 1 Skema PKM-KC (Room 1), Lomba PKP2 PTMA           | PUSPRESMA PTMA & UM Makassar    | 10–11 Oktober 2025  |
 | 3   | 🥈 Juara 2 Kategori Presentasi KC/PI/VGK/GFT, PIMTANAS ke-5 | PUSPRESMA PTMA & UM Banjarmasin | 11–13 Desember 2025 |
 
-> 📁 **Catatan implementasi:** letakkan ketiga file gambar sertifikat di dalam folder `assets/certificates/` pada root repository dengan nama file yang sama seperti pada tabel di atas, agar gambar tampil otomatis di halaman GitHub.
+> 📁 **Catatan implementasi:** pastikan ketiga file gambar sertifikat berada langsung di **root repository** (sejajar dengan `README.md`, bukan di dalam subfolder) dengan nama file persis seperti pada tabel di atas, agar gambar tampil otomatis di halaman GitHub.
 
 ---
 
@@ -288,9 +288,10 @@ VISION-MEDICINE/
 ├── WEBSITE/             # Source code website VISMED (React + Express JS)
 ├── YOLO/                # Dataset, training, dan model YOLOv11 untuk deteksi obat
 ├── n8n-railway/         # Konfigurasi deployment n8n pada platform Railway
-├── assets/
-│   ├── certificates/    # Sertifikat penghargaan (lihat bagian Pencapaian)
-│   └── logo/            # Logo & banner proyek
+├── Vision Medicine Banner.png                       # Banner utama README
+├── certificate-1-national-funding-pkm-kc-2025.png   # Sertifikat Pendanaan Nasional
+├── certificate-2-1st-winner-pkp2-ptma-2025.png      # Sertifikat Juara 1 PKP2 PTMA
+├── certificate-3-2nd-place-pimtanas-2025.png        # Sertifikat Juara 2 PIMTANAS
 └── README.md
 ```
 
